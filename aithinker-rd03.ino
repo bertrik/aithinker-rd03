@@ -15,7 +15,7 @@ static RD03Protocol proto_ack = RD03Protocol(0xFAFBFCFD, 0x01020304);
 static RD03Protocol proto_rsp = RD03Protocol(0xF1F2F3F4, 0xF5F6F7F8);
 static bool debug = false;
 
-static void printhex(const char *prefix, const uint8_t * buf, size_t len)
+static void printhex(const char *prefix, const uint8_t *buf, size_t len)
 {
     printf(prefix);
     for (size_t i = 0; i < len; i++) {
@@ -45,7 +45,7 @@ static bool radar_command_raw(uint16_t cmd, size_t cmd_len, const uint8_t *cmd_d
     size_t len = proto_ack.build_command(buf, cmd, cmd_len, cmd_data);
     printhex("CMD <", buf, len);
     radar.write(buf, len);
-    
+
     // wait
     unsigned long begin = millis();
     while ((millis() - begin) < 1000) {
@@ -91,7 +91,7 @@ static bool radar_command(uint16_t cmd, size_t cmd_len, const uint8_t *cmd_data)
     delay(100);
 
     // close
-    radar_close();    
+    radar_close();
     return 0;
 }
 
@@ -101,7 +101,7 @@ static int do_mode(int argc, char *argv[])
         return -1;
     }
     int mode = atoi(argv[1]);
-    
+
     uint8_t data[6];
     data[0] = 0;
     data[1] = 0;
@@ -153,7 +153,7 @@ void loop(void)
     uint8_t buf[256];
 
     shell.process(">", commands);
-    
+
     // process incoming data from radar
     while (radar.available()) {
         uint8_t c = radar.read();
@@ -168,4 +168,3 @@ void loop(void)
         }
     }
 }
-

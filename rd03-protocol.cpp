@@ -10,8 +10,8 @@ RD03Protocol::RD03Protocol(uint32_t header, uint32_t footer)
     reset_rx();
 }
 
-size_t RD03Protocol::build_command(uint8_t * buf, uint16_t cmd, size_t cmd_data_len,
-                                     const uint8_t * cmd_data)
+size_t RD03Protocol::build_command(uint8_t *buf, uint16_t cmd, size_t cmd_data_len,
+                                   const uint8_t *cmd_data)
 {
     // header
     size_t idx = 0;
@@ -96,7 +96,7 @@ bool RD03Protocol::process_rx(uint8_t c)
     return false;
 }
 
-size_t RD03Protocol::get_data(uint8_t * data)
+size_t RD03Protocol::get_data(uint8_t *data)
 {
     memcpy(data, _buf, _len);
     return _len;

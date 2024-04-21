@@ -25,7 +25,7 @@ class RD03Protocol {
   public:
     // FAFBFCFD/01020304 for ACK
     // F1F2F3F4/F5F6F7F8 for report
-    RD03Protocol(uint32_t header, uint32_t footer);
+     RD03Protocol(uint32_t header, uint32_t footer);
 
     // builds a command
     size_t build_command(uint8_t * buf, uint16_t cmd, size_t cmd_data_len,
